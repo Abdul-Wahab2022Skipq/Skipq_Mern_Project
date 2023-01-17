@@ -1,0 +1,15 @@
+@import url("../../utilites/Color.css");
+
+.button {
+  cursor: pointer;
+  z-index: 1;
+  background-color: var(--App);
+  padding: 15px;
+  font-weight: bold;
+  color: white;
+  -webkit-box-shadow: 0 0 10px 0.5px rgba(0, 0, 0, 0.25);
+  box-shadow: 0 0 10px 0.5px rgba(0, 0, 0, 0.25);
+  border-radius: 15px;
+  font-size: 20px;
+  border: 0;
+}

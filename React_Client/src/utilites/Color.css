@@ -1,0 +1,13 @@
+:root {
+  --App_background: #fefcf3;
+  --menu: #f5ebe0;
+  --App: #dba39a;
+  --text: black;
+}
+
+[data-theme="dark"] {
+  --App_background: #191a19;
+  --menu: black;
+  --App: #4e9f3d;
+  --text: white;
+}

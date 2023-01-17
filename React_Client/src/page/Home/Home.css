@@ -1,0 +1,14 @@
+@import url("../../utilites/Color.css");
+
+.Home {
+  width: 100%;
+  display: flex;
+}
+
+.hleftside {
+  flex: 7;
+}
+
+.hrigthside {
+  flex: 5;
+}

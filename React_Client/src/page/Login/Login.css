@@ -1,0 +1,72 @@
+@import url("../../utilites/Color.css");
+
+.loading {
+  position: absolute;
+  width: 100%;
+  height: 100%;
+  top: 0;
+  left: 0;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  background-color: rgba(0, 0, 0, 0.25);
+}
+
+.logbody {
+  background-color: var(--App_background);
+  height: 100vh;
+  display: flex;
+  padding: 0 25px;
+}
+
+.Appname {
+  margin: auto;
+}
+
+.Appname span {
+  color: var(--App);
+  font-size: 48px;
+  font-weight: bold;
+}
+
+.Appname p {
+  font-size: 24px;
+  width: 75%;
+  color: var(--text);
+}
+
+.errorset {
+  color: red;
+}
+
+.linelogin {
+  height: 1px;
+  width: 100%;
+  background-color: black;
+  margin: 25px 0;
+}
+
+.logboxset {
+  width: 450px;
+  display: flex;
+  align-items: center;
+}
+
+.logbox {
+  background-color: white;
+  -webkit-box-shadow: 0 0 10px 0.5px rgba(0, 0, 0, 0.25);
+  box-shadow: 0 0 10px 0.5px rgba(0, 0, 0, 0.25);
+  height: fit-content;
+  width: 100%;
+  padding: 20px;
+  border-radius: 15px;
+  display: flex;
+  flex-direction: column;
+}
+
+.input {
+  width: 100%;
+  height: 45px;
+  border-radius: 10px;
+  font-size: 24px;
+}

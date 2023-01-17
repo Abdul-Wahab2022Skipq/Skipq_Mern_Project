@@ -1,0 +1,20 @@
+@import url("../../utilites/Color.css");
+
+.friend {
+  display: flex;
+  margin: 10px 0;
+  align-items: center;
+  color: black;
+}
+
+.friend img {
+  width: 40px;
+  height: 40px;
+  margin-right: 10px;
+  border-radius: 100%;
+}
+
+.friendname {
+  text-transform: capitalize;
+  font-weight: bold;
+}

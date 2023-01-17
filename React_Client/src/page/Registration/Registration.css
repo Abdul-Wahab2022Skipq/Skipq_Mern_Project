@@ -1,0 +1,76 @@
+@import url("../../utilites/Color.css");
+
+.loading {
+  position: absolute;
+  width: 100%;
+  height: 100%;
+  top: 0;
+  left: 0;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  background-color: rgba(0, 0, 0, 0.25);
+}
+
+.regbody {
+  background-color: var(--App_background);
+  height: 100vh;
+  display: flex;
+  padding: 0 25px;
+  align-items: center;
+}
+
+.Appname {
+  margin: auto;
+}
+
+.Appname span {
+  color: var(--App);
+  font-size: 48px;
+  font-weight: bold;
+}
+
+.Appname p {
+  font-size: 24px;
+  width: 75%;
+  color: var(--text);
+}
+
+.regformset {
+  width: 450px;
+  display: flex;
+  align-items: center;
+}
+
+.regform {
+  width: 100%;
+  background-color: white;
+  -webkit-box-shadow: 0 0 10px 0.5px rgba(0, 0, 0, 0.25);
+  box-shadow: 0 0 10px 0.5px rgba(0, 0, 0, 0.25);
+  height: fit-content;
+  padding: 15px;
+  border-radius: 25px;
+}
+
+.formside {
+  flex: 25%;
+  display: "flex";
+  flex-direction: "column";
+}
+
+.input {
+  height: 40px;
+  border-radius: 10px;
+  font-size: 24px;
+  border: 1px solid gray;
+}
+
+.image {
+  width: 250px;
+  height: 250px;
+  margin-left: 25px;
+  background: #f0dbdb;
+  position: relative;
+  border-radius: 25px;
+  overflow: hidden;
+}

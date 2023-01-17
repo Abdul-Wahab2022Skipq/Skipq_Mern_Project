@@ -1,0 +1,25 @@
+@import url("../../utilites/Color.css");
+
+.Menu {
+  background-color: var(--menu);
+  height: 50px;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 0 25px;
+}
+
+.welcomeset {
+  text-transform: capitalize;
+}
+
+.nav {
+  display: flex;
+}
+
+.link {
+  color: var(--text);
+  text-decoration: none;
+  font-weight: bold;
+  text-transform: uppercase;
+}
