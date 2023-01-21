@@ -1,0 +1,100 @@
+.pBackbox {
+  z-index: 10;
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background-color: rgba(0, 0, 0, 0.5);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.pbox {
+  background-color: var(--menu);
+  padding: 10px;
+  border-radius: 10px;
+  width: 50%;
+}
+
+.profileEditTop {
+  position: relative;
+  display: flex;
+  justify-content: center;
+}
+
+.profileEditTop label {
+  font-weight: bold;
+  font-size: 24px;
+}
+
+.Editprofileset {
+  display: flex;
+  flex-direction: column;
+  margin: 10px 0;
+}
+
+.profileedittext {
+  display: flex;
+  justify-content: space-between;
+}
+
+.profileedittext label {
+  font-weight: bold;
+}
+
+.Editprofileset span {
+  width: 100%;
+  display: flex;
+  justify-content: center;
+}
+
+.Editprofileset span img {
+  width: 150px;
+  height: 150px;
+  border-radius: 100%;
+}
+
+.bioedit {
+  width: 100%;
+  margin: 10px 0;
+}
+
+.bioedit input {
+  width: 100%;
+  border-radius: 10px;
+  height: 25px;
+  background-color: transparent;
+  font-size: 16px;
+}
+
+.infoedit {
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+  width: 100%;
+  margin: 10px 0;
+}
+
+.infoedit .inputEdit {
+  display: flex;
+}
+
+.inputEdit div {
+  width: 100px;
+}
+
+.infoedit input {
+  border-radius: 10px;
+  height: 25px;
+  background-color: transparent;
+  font-size: 16px;
+}
+
+.infoedit select {
+  width: 100px;
+  height: 25px;
+  background-color: transparent;
+  border-radius: 10px;
+}

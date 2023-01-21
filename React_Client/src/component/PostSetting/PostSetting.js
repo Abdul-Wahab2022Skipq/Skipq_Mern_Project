@@ -1,9 +1,9 @@
 import axios from "axios";
 import React from "react";
-import { AuthContext } from "../../../context/AuthContext";
+import { AuthContext } from "../../context/AuthContext";
 
-import "./SettingPost.css";
-function SettingPost({ user, post }) {
+import "./PostSetting.css";
+function PostSetting({ user, post, editpost }) {
   const { user: currentUser, dispatch } = React.useContext(AuthContext);
 
   const followHandle = async () => {
@@ -18,12 +18,13 @@ function SettingPost({ user, post }) {
     window.location.reload();
   };
 
+  // Delete Post
   const deleteHandle = async () => {
-    console.log(currentUser);
-    console.log(post);
     try {
-      await axios.delete("/posts/" + post._id, { userId: currentUser._id });
-      // window.location.reload();
+      await axios.delete("/posts/" + post._id, {
+        data: { userId: currentUser._id },
+      });
+      window.location.reload();
     } catch (err) {
       console.log(err);
     }
@@ -33,7 +34,9 @@ function SettingPost({ user, post }) {
     <div className="Postsettingbox">
       {currentUser._id === user._id ? (
         <>
-          <div className="EditPost">Edit post</div>
+          <div className="EditPost" onClick={editpost}>
+            Edit post
+          </div>
           <div className="deletePost" onClick={deleteHandle}>
             Delete post
           </div>
@@ -47,4 +50,4 @@ function SettingPost({ user, post }) {
   );
 }
 
-export default SettingPost;
+export default PostSetting;

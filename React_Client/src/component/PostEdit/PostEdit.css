@@ -1,0 +1,105 @@
+.EditPostbackground {
+  z-index: 1;
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100vh;
+  background-color: rgba(0, 0, 0, 0.5);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.editpostbox {
+  background-color: var(--menu);
+  width: fit-content;
+  height: fit-content;
+  padding: 15px;
+  border-radius: 10px;
+}
+
+.EditTop {
+  position: relative;
+  text-align: center;
+  font-size: 24px;
+  font-weight: bold;
+}
+
+.editpostclose {
+  cursor: pointer;
+  position: absolute;
+  background-color: var(--App);
+  top: 0;
+  right: 0;
+  border-radius: 10px;
+  padding: 5px;
+}
+
+.edituser {
+  width: 100%;
+  height: 100%;
+  display: flex;
+  align-items: center;
+}
+
+.edituser img {
+  width: 75px;
+  height: 75px;
+  border-radius: 100%;
+}
+
+.edituser label {
+  font-weight: bold;
+  font-size: 20px;
+  margin: 10px;
+  text-transform: capitalize;
+}
+
+.edituser select {
+  background-color: transparent;
+  height: 25px;
+}
+
+.editpostdisplay {
+  width: 75vh;
+  max-height: 50vh;
+  overflow-y: auto;
+  overflow-x: hidden;
+  visibility: hidden;
+  display: flex;
+  flex-direction: column;
+}
+
+.editpostdisplay div {
+  visibility: visible;
+}
+
+.editpostdisplay:hover {
+  visibility: visible;
+}
+
+.editpostdisplay::-webkit-scrollbar {
+  width: 5px;
+}
+
+.editpostdisplay::-webkit-scrollbar-thumb {
+  background: var(--App);
+  border-radius: 10px;
+}
+
+.editpostdisplay input {
+  background-color: transparent;
+  border: 0;
+  margin-bottom: 25px;
+  width: 98%;
+  font-size: 16px;
+}
+
+.editpostdisplay input:focus {
+  border: transparent;
+}
+
+.editpostdisplay img {
+  width: 100%;
+}

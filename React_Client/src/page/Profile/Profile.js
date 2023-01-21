@@ -12,14 +12,16 @@ import Button from "../../component/Button/Button";
 import Feed from "../../component/Feed/Feed";
 import Rightbar from "../../component/Rightbar/Rightbar";
 import { AuthContext } from "../../context/AuthContext";
+import ProfileEdit from "../../component/ProfileEdit/ProfileEdit";
 
 function Profile() {
+  const [profileedit, setProfileEdit] = React.useState(false);
   const [user, setUser] = React.useState([]);
   const { user: currentUser, dispatch } = React.useContext(AuthContext);
 
   const [post, setPost] = React.useState(0);
-  const [follow, setfollow] = React.useState();
-  const [following, setfollowing] = React.useState();
+  const [follow, setfollow] = React.useState(0);
+  const [following, setfollowing] = React.useState(0);
 
   // Btn
   const [followed, setfollowed] = React.useState(false);
@@ -66,6 +68,16 @@ function Profile() {
     window.location.reload();
   };
 
+  // Edit Profile
+  const EditProfile = () => {
+    if (!profileedit) {
+      document.body.style.overflow = "hidden";
+    } else {
+      document.body.style.overflow = "unset";
+    }
+    setProfileEdit(!profileedit);
+  };
+
   // Logout
   const LogoutHandle = () => {
     localStorage.removeItem("userInfo");
@@ -75,6 +87,7 @@ function Profile() {
 
   return (
     <>
+      {profileedit && <ProfileEdit close={EditProfile} user={user} />}
       <Menubar />
       <section className="body">
         <img src={background} alt="Back_Image" className="ImageBackground" />
@@ -104,7 +117,11 @@ function Profile() {
             <div className="rightside">
               {username === currentUser.username ? (
                 <>
-                  <Button name="Edit" style={{ padding: "10px" }} />
+                  <Button
+                    name="Edit"
+                    style={{ padding: "10px" }}
+                    onClick={EditProfile}
+                  />
                   <Button
                     name="Log Out"
                     style={{ padding: "10px" }}

@@ -17,6 +17,7 @@ function SharePost() {
     const newPost = {
       userId: user._id,
       desc: desc.current.value,
+      type: "Private",
     };
     if (file) {
       const data = new FormData();

@@ -39,7 +39,7 @@ export default function Rightbar({ user }) {
       }
     };
     getAllUser([]);
-  }, [user]);
+  }, [currentUser]);
 
   const HomeRightbar = () => {
     return (
@@ -64,21 +64,23 @@ export default function Rightbar({ user }) {
         <h4>User Information</h4>
         <div className="userinfo">
           <div>
-            <span>City: </span>
-            <span className="infovalue">{user.city ? user.city : "-"}</span>
+            <span>City:- </span>
+            <span className="infovalue">{user.city ? user.city : "---"}</span>
           </div>
           <div>
-            <span>From: </span>
-            <span className="infovalue">{user.from ? user.from : "-"}</span>
+            <span>country:- </span>
+            <span className="infovalue">
+              {user.country ? user.country : "---"}
+            </span>
           </div>
           <div>
-            <span>Realationship: </span>
+            <span>Realationship:- </span>
             <span className="infovalue">
               {user.relationship === 1
                 ? "Single"
                 : user.relationship === 2
                 ? "Married"
-                : "-"}
+                : "---"}
             </span>
           </div>
         </div>

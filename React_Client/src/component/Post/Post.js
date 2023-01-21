@@ -9,10 +9,12 @@ import likeIcon from "../../assets/like.png";
 import unlikeIcon from "../../assets/unlike.png";
 import noAvatar from "../../assets/noAvatar.png";
 import { AuthContext } from "../../context/AuthContext";
-import SettingPost from "./SettingPost/SettingPost";
+import PostSetting from "../PostSetting/PostSetting";
+import PostEdit from "../PostEdit/PostEdit";
 
-function Post({ post }) {
+function Post({ post, hometype }) {
   const [model, setModel] = React.useState(false);
+  const [editpostmodel, setEditPostModel] = React.useState(false);
 
   const [like, setLike] = React.useState(post.likes.length);
   const [isliked, setisLiked] = React.useState(false);
@@ -48,8 +50,19 @@ function Post({ post }) {
     setModel(!model);
   };
 
+  // Edit Post display
+  const EditHandle = () => {
+    setEditPostModel(!editpostmodel);
+    if (!editpostmodel) {
+      document.body.style.overflow = "hidden";
+    } else {
+      document.body.style.overflow = "unset";
+    }
+  };
   return (
     <div>
+      {editpostmodel && <PostEdit close={EditHandle} post={post} user={user} />}
+
       <div className="postedbox">
         {/* posted info */}
         <div className="postedTop">
@@ -62,10 +75,13 @@ function Post({ post }) {
               {user.username}
             </Link>
             <span className="Posttime">{format(post.createdAt)}</span>
+            <span>{hometype ? post.type : ""}</span>
           </div>
           <div className="postedTopright" onClick={toggleModel}>
             <MoreVertIcon />
-            {model && <SettingPost user={user} post={post} />}
+            {model && (
+              <PostSetting user={user} post={post} editpost={EditHandle} />
+            )}
           </div>
         </div>
         {/* posted set  center*/}

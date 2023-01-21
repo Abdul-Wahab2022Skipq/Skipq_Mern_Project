@@ -29,9 +29,11 @@ function Feed({ username }) {
       {/* Write a post */}
       {(!username || username === user.username) && <SharePost />}
       {/* display all post */}
-      {posts.map((p) => (
-        <Post key={p._id} post={p} />
-      ))}
+      {posts.length !== 0 ? (
+        posts.map((p) => <Post key={p._id} post={p} hometype={username} />)
+      ) : (
+        <div className="EmptyPost">No Post Yet !</div>
+      )}
     </div>
   );
 }
