@@ -3,7 +3,7 @@ const User = require("../models/User");
 
 // update user
 router.put("/:id", async (req, res) => {
-  console.log(req.params.id);
+  // console.log(req.params.id);
   if (req.body.userId == req.params.id || req.body.isAdmin) {
     try {
       const user = await User.findByIdAndUpdate(req.params.id, {
@@ -20,7 +20,7 @@ router.put("/:id", async (req, res) => {
 
 // delete user
 router.delete("/:id", async (req, res) => {
-  console.log(req.params.id);
+  // console.log(req.params.id);
   if (req.body.userId == req.params.id || req.body.isAdmin) {
     try {
       const user = await User.findByIdAndDelete({ _id: req.params.id });
@@ -37,10 +37,12 @@ router.delete("/:id", async (req, res) => {
 router.get("/", async (req, res) => {
   const userId = req.query.userId;
   const username = req.query.username;
+  const errorMessage = "not Found";
   try {
     const user = userId
       ? await User.findById(userId)
       : await User.findOne({ username: username });
+    if (!user) return res.status(200).json(errorMessage);
     const { password, updatedAt, isAdmin, ...other } = user._doc;
     res.status(200).json(other);
   } catch (err) {

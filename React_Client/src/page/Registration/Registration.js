@@ -35,7 +35,11 @@ function Registration() {
           navigate("/Login");
           setLoading(false);
         } catch (err) {
-          console.log(err);
+          if (err.response.data === "user Found")
+            formik.errors.username = err.response.data;
+          else if (err.response.data === "email Found")
+            formik.errors.email = err.response.data;
+
           setLoading(false);
         }
       };

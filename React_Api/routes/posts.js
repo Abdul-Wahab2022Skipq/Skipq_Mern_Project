@@ -71,18 +71,21 @@ router.get("/:id", async (req, res) => {
 
 // get timeline posts
 router.get("/timeline/:userId", async (req, res) => {
+  const limit = req.query.limit;
+  const skip = req.query.skip;
   try {
     const currentUser = await User.findById(req.params.userId);
-    const userPosts = await Post.find({
-      userId: currentUser._id,
-      type: "Public",
+    const IdList = [currentUser._id.toString()];
+    currentUser.followings.map((Id) => {
+      IdList.push(Id);
     });
-    const friendPosts = await Promise.all(
-      currentUser.followings.map((freiendId) => {
-        return Post.find({ userId: freiendId });
-      })
-    );
-    res.status(200).json(userPosts.concat(...friendPosts));
+    const ListPosts = await Post.find({ userId: { $in: IdList } })
+      .limit(limit)
+      .skip(skip)
+      .sort("-createdAt");
+    const count = await Post.find({ userId: { $in: IdList } }).count();
+
+    res.status(200).json({ count: count, posts: ListPosts });
   } catch (err) {
     res.status(500).json("err");
   }
@@ -90,12 +93,23 @@ router.get("/timeline/:userId", async (req, res) => {
 
 // get User's all posts
 router.get("/profile/:username", async (req, res) => {
+  const limit = req.query.limit;
+  const skip = req.query.skip;
   try {
     const user = await User.findOne({ username: req.params.username });
-    const posts = await Post.find({ userId: user._id });
-    res.status(200).json(posts);
+    const posts = await Post.find({ userId: user._id })
+      .limit(limit)
+      .skip(skip)
+      .sort("-createdAt");
+    const count = await Post.find({ userId: user._id }).count();
+
+    const list = {
+      count: count,
+      posts: posts,
+    };
+    res.status(200).json(list);
   } catch (err) {
-    res.status(500).json("err");
+    res.status(500).json(err);
   }
 });
 

@@ -22,7 +22,7 @@ export default function Rightbar({ user }) {
         const userfriendlist = await axios.get("/user/friends/" + user._id);
         setFriends(userfriendlist.data);
       } catch (err) {
-        console.log(err);
+        // console.log(err);
       }
     };
     getFriends();
@@ -76,9 +76,9 @@ export default function Rightbar({ user }) {
           <div>
             <span>Realationship:- </span>
             <span className="infovalue">
-              {user.relationship === 1
+              {user.relationShip === "1"
                 ? "Single"
-                : user.relationship === 2
+                : user.relationShip === "2"
                 ? "Married"
                 : "---"}
             </span>

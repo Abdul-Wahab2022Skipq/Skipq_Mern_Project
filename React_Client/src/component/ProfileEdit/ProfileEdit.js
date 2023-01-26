@@ -4,6 +4,7 @@ import CloseIcon from "@mui/icons-material/Close";
 import "./ProfileEdit.css";
 import noAvatar from "../../assets/noAvatar.png";
 import Button from "../Button/Button";
+import axios from "axios";
 
 function ProfileEdit({ close, user }) {
   const PF = process.env.REACT_APP_IMAGES;
@@ -16,14 +17,20 @@ function ProfileEdit({ close, user }) {
 
   const UpdateProfileHandle = () => {
     const updateuser = {
+      userId: user._id,
       name: name.current.value,
       bio: bio.current.value,
       city: city.current.value,
       country: country.current.value,
-      relationship: relationship.current.value,
+      relationShip: relationship.current.value,
     };
-
     console.log(updateuser);
+    try {
+      axios.put("/user/" + user._id, updateuser);
+      window.location.reload();
+    } catch (err) {
+      console.log(err);
+    }
   };
   return (
     <div className="pBackbox">
@@ -104,6 +111,7 @@ function ProfileEdit({ close, user }) {
               <div className="inputEdit">
                 <div>relationShip: </div>
                 <select defaultValue={user.relationShip} ref={relationship}>
+                  <option value="">----</option>
                   <option value="1">Single</option>
                   <option value="2">Married</option>
                 </select>

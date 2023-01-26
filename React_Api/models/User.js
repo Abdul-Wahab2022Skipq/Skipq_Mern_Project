@@ -13,7 +13,7 @@ const UserSchema = new mongoose.Schema(
     bio: { type: String },
     city: { type: String },
     country: { type: String },
-    relationShip: { type: String, enum: [1, 2] },
+    relationShip: { type: String, enum: [] },
   },
   { timestamps: true }
 );

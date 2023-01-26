@@ -12,10 +12,14 @@ router.post("/register", async (req, res) => {
     });
 
     const namecheck = await User.findOne({ username: req.body.username });
-    namecheck && res.status(404).json("user Found");
+    if (namecheck) {
+      return res.status(404).json("user Found");
+    }
 
     const emailcheck = await User.findOne({ email: req.body.email });
-    emailcheck && res.status(404).json("email Found");
+    if (emailcheck) {
+      return res.status(404).json("email Found");
+    }
 
     const user = await newUser.save();
     res.status(200).json(user);
@@ -28,12 +32,15 @@ router.post("/register", async (req, res) => {
 // Login
 router.post("/login", async (req, res) => {
   const { email, password } = req.body;
-
+  const errorMessage = "user not found or Password not match";
   try {
     const user = await User.findOne({ email: email, password: password });
-    !user && res.status(404).json("user not found or Password not match");
-
-    res.status(200).json(user);
+    if (!user) {
+      res.status(404).json(errorMessage);
+    } else {
+      const { password, updatedAt, isAdmin, ...other } = user._doc;
+      res.status(200).json(other);
+    }
   } catch (err) {
     // console.log(err);
     res.status(500).json(err);

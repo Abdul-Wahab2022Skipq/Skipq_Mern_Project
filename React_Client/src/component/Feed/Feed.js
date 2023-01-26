@@ -1,5 +1,6 @@
 import React from "react";
 import axios from "axios";
+import ReactPaginate from "react-paginate";
 
 import "./Feed.css";
 import SharePost from "../SharePost/SharePost";
@@ -7,22 +8,46 @@ import Post from "../Post/Post";
 import { AuthContext } from "../../context/AuthContext";
 
 function Feed({ username }) {
-  const [posts, setPosts] = React.useState([]);
   const { user } = React.useContext(AuthContext);
+  const [posts, setPosts] = React.useState([]);
+  const [count, setCount] = React.useState();
+  const limit = 2;
+  const [skip, setSkip] = React.useState(0);
 
   React.useEffect(() => {
     const fetchposts = async () => {
       const result = username
-        ? await axios.get("/posts/profile/" + username)
-        : await axios.get("/posts/timeline/" + user._id);
-      setPosts(
-        result.data.sort((p1, p2) => {
-          return new Date(p2.createdAt) - new Date(p1.createdAt);
-        })
-      );
+        ? await axios.get(
+            "/posts/profile/" + username + "?limit=" + limit + "&skip=" + skip
+          )
+        : await axios.get(
+            "/posts/timeline/" + user._id + "?limit=" + limit + "&skip=" + skip
+          );
+      // console.log(result.data);
+      setPosts(result.data.posts);
+      setCount(result.data.count);
     };
     fetchposts();
-  }, [username, user._id]);
+  }, [limit, skip, username, user._id]);
+
+  const currentPagefetch = async (currentpage) => {
+    // console.log(currentpage);
+
+    const result = username
+      ? await axios.get(
+          "/posts/profile/" + username + "?limit=" + limit + "&skip=" + skip
+        )
+      : await axios.get(
+          "/posts/timeline/" + user._id + "?limit=" + limit + "&skip=" + skip
+        );
+    setPosts(result.data.posts);
+  };
+
+  const handlePageClick = (data) => {
+    let currentpage = data.selected;
+    setSkip(currentpage * limit);
+    currentPagefetch(currentpage);
+  };
 
   return (
     <div>
@@ -30,7 +55,31 @@ function Feed({ username }) {
       {(!username || username === user.username) && <SharePost />}
       {/* display all post */}
       {posts.length !== 0 ? (
-        posts.map((p) => <Post key={p._id} post={p} hometype={username} />)
+        <>
+          {posts.map((p) => (
+            <Post key={p._id} post={p} hometype={username} />
+          ))}
+          <ReactPaginate
+            previousLabel="<"
+            nextLabel=">"
+            breakLabel="..."
+            pageCount={count / limit}
+            pageRangeDisplayed={3}
+            marginPagesDisplayed={1}
+            onPageChange={handlePageClick}
+            containerClassName="pagination"
+            pageClassName="page-item"
+            pageLinkClassName="page-link"
+            previousClassName="page-item"
+            previousLinkClassName="page-link"
+            nextClassName="page-item"
+            nextLinkClassName="page-link"
+            breakClassName="page-item"
+            breakLinkClassName="page-link"
+            activeClassName="active"
+            disabledClassName="disabled"
+          />
+        </>
       ) : (
         <div className="EmptyPost">No Post Yet !</div>
       )}

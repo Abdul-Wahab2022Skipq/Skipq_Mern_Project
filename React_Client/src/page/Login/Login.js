@@ -17,7 +17,7 @@ import { AuthContext } from "../../context/AuthContext";
 import { loginCall } from "../../apiCall";
 
 const Login = () => {
-  const { user, isFetching, error, dispatch } = React.useContext(AuthContext);
+  const { isFetching, error, dispatch } = React.useContext(AuthContext);
   // Registration page
   const navigate = useNavigate();
   // Validation
@@ -30,9 +30,12 @@ const Login = () => {
     onSubmit: (values) => {
       try {
         loginCall({ email: values.email, password: values.password }, dispatch);
-        console.log(user);
+        if (error.response.data) {
+          formik.errors.email = "Email wrong";
+          formik.errors.password = "Password wrong";
+        }
       } catch (err) {
-        console.log(error);
+        console.log(err);
       }
     },
     validationSchema: Yup.object({

@@ -12,3 +12,17 @@
   font-size: 52px;
   font-weight: bolder;
 }
+
+.pagination {
+  justify-content: center;
+  --bs-pagination-bg: var(--App);
+  --bs-pagination-disabled-bg: var(--menu);
+  --bs-pagination-hover-color: var(--App);
+  --bs-pagination-hover-bg: var(--menu);
+  --bs-pagination-color: var(--text);
+  --bs-pagination-focus-color: var(--text);
+  --bs-pagination-focus-box-shadow: var(--App);
+  --bs-pagination-active-color: var(--text);
+  --bs-pagination-active-bg: var(--menu);
+  --bs-pagination-active-border-color: var(--menu);
+}

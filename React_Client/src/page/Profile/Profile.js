@@ -18,10 +18,7 @@ function Profile() {
   const [profileedit, setProfileEdit] = React.useState(false);
   const [user, setUser] = React.useState([]);
   const { user: currentUser, dispatch } = React.useContext(AuthContext);
-
   const [post, setPost] = React.useState(0);
-  const [follow, setfollow] = React.useState(0);
-  const [following, setfollowing] = React.useState(0);
 
   // Btn
   const [followed, setfollowed] = React.useState(false);
@@ -37,15 +34,15 @@ function Profile() {
   React.useEffect(() => {
     const fetchUser = async () => {
       const result = await axios.get(`/user?username=${username}`);
-      // console.log(result.data);
+      if (result.data === "not Found") {
+        navigate("/error");
+      }
       setUser(result.data);
-      setfollow(result.data.followers.length);
-      setfollowing(result.data.followings.length);
       const count = await axios.get("/posts/profile/" + username);
-      setPost(count.data.length);
+      setPost(count.data.count);
     };
     fetchUser();
-  }, [username]);
+  }, [navigate, username]);
 
   // FollowHandle
   const followHandle = async () => {
@@ -100,11 +97,11 @@ function Profile() {
                 <span>Posts</span>
               </div>
               <div className="FPC">
-                <label>{follow}</label>
+                <label>{user.followers ? user.followers.length : 0}</label>
                 <span>followers</span>
               </div>
               <div className="FPC">
-                <label>{following}</label>
+                <label>{user.followings ? user.followings.length : 0}</label>
                 <span>followings</span>
               </div>
             </div>
@@ -140,7 +137,7 @@ function Profile() {
           {/* After image information */}
           <div className="Information">
             <label>{user.username}</label>
-            <span>Friends, Welcome to My Page!</span>
+            <span>{user.bio ? user.bio : "Friends, Welcome to My Page!"}</span>
           </div>
         </div>
         {/* Profile Post Information*/}
