@@ -6,6 +6,7 @@ import Registration from "./page/Registration/Registration";
 import ErrorPage from "./page/ErrorPage/ErrorPage";
 import Home from "./page/Home/Home";
 import Profile from "./page/Profile/Profile";
+import Singlepost from "./page/SingleStory/SingleStory";
 import { AuthContext } from "./context/AuthContext";
 
 function App() {
@@ -26,6 +27,10 @@ function App() {
         <Route
           path="/profile/:username"
           element={user ? <Profile /> : <Navigate to="/Login" />}
+        />
+        <Route
+          path="/SinglePost/:postid"
+          element={user ? <Singlepost /> : <Navigate to="/Login" />}
         />
 
         {/* Error Page */}

@@ -86,11 +86,12 @@ const Login = () => {
                       : "black",
                 }}
                 id="email"
+                data-testid="email"
                 name="email"
                 placeholder="Enter Email"
                 {...formik.getFieldProps("email")}
               />
-              <FormErrorMessage className="errorset">
+              <FormErrorMessage data-testid="error.email" className="errorset">
                 {formik.errors.email}
               </FormErrorMessage>
             </FormControl>
@@ -113,11 +114,15 @@ const Login = () => {
                 }}
                 id="password"
                 name="password"
+                data-testid="password"
                 type="password"
                 placeholder="Enter Password"
                 {...formik.getFieldProps("password")}
               />
-              <FormErrorMessage className="errorset">
+              <FormErrorMessage
+                data-testid="error.password"
+                className="errorset"
+              >
                 {formik.errors.password}
               </FormErrorMessage>
             </FormControl>

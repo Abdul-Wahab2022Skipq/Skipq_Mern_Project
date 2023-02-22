@@ -1,6 +1,7 @@
 import React from "react";
 import axios from "axios";
 import { format } from "timeago.js";
+import { useNavigate } from "react-router-dom";
 import { Link } from "react-router-dom";
 import MoreVertIcon from "@mui/icons-material/MoreVert";
 
@@ -13,6 +14,8 @@ import PostSetting from "../PostSetting/PostSetting";
 import PostEdit from "../PostEdit/PostEdit";
 
 function Post({ post, hometype }) {
+  const navigate = useNavigate();
+
   const [model, setModel] = React.useState(false);
   const [editpostmodel, setEditPostModel] = React.useState(false);
 
@@ -59,6 +62,7 @@ function Post({ post, hometype }) {
       document.body.style.overflow = "unset";
     }
   };
+
   return (
     <div>
       {editpostmodel && <PostEdit close={EditHandle} post={post} user={user} />}
@@ -85,7 +89,10 @@ function Post({ post, hometype }) {
           </div>
         </div>
         {/* posted set  center*/}
-        <div className="postCenter">
+        <div
+          className="postCenter"
+          onClick={() => navigate(`/SinglePost/${post._id}`)}
+        >
           <p>{post?.desc}</p>
           {post.img ? <img src={PF + post.img} alt="s" /> : ""}
         </div>

@@ -79,7 +79,10 @@ router.get("/timeline/:userId", async (req, res) => {
     currentUser.followings.map((Id) => {
       IdList.push(Id);
     });
-    const ListPosts = await Post.find({ userId: { $in: IdList } })
+    const ListPosts = await Post.find({
+      userId: { $in: IdList },
+      type: "Public",
+    })
       .limit(limit)
       .skip(skip)
       .sort("-createdAt");
@@ -95,19 +98,37 @@ router.get("/timeline/:userId", async (req, res) => {
 router.get("/profile/:username", async (req, res) => {
   const limit = req.query.limit;
   const skip = req.query.skip;
+  const Id = req.query.userId;
   try {
     const user = await User.findOne({ username: req.params.username });
-    const posts = await Post.find({ userId: user._id })
-      .limit(limit)
-      .skip(skip)
-      .sort("-createdAt");
-    const count = await Post.find({ userId: user._id }).count();
+    var posts, count;
+    if (user._id.toString() === Id) {
+      posts = await Post.find({ userId: user._id })
+        .limit(limit)
+        .skip(skip)
+        .sort("-createdAt");
+      count = await Post.find({ userId: user._id }).count();
+    } else {
+      posts = await Post.find({ userId: user._id, type: "Public" })
+        .limit(limit)
+        .skip(skip)
+        .sort("-createdAt");
+      count = await Post.find({ userId: user._id, type: "Public" }).count();
+    }
 
-    const list = {
-      count: count,
-      posts: posts,
-    };
-    res.status(200).json(list);
+    res.status(200).json({ count: count, posts: posts });
+  } catch (err) {
+    res.status(500).json(err);
+  }
+});
+
+// User Single Post
+router.get("/Singlepost/:postid", async (req, res) => {
+  const id = req.params.postid;
+  try {
+    const post = await Post.findOne({ _id: id, type: "Public" });
+    if (post == null) res.status(200).json("not Found");
+    else res.status(200).json(post);
   } catch (err) {
     res.status(500).json(err);
   }

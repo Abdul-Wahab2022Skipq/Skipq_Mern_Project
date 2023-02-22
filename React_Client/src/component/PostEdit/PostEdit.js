@@ -1,9 +1,10 @@
 import React from "react";
 import CloseIcon from "@mui/icons-material/Close";
+import axios from "axios";
 
 import "./PostEdit.css";
+import noAvatar from "../../assets/noAvatar.png";
 import Button from "../Button/Button";
-import axios from "axios";
 
 function PostEdit({ user, post, close }) {
   const PF = process.env.REACT_APP_IMAGES;
@@ -35,7 +36,10 @@ function PostEdit({ user, post, close }) {
         </div>
         <hr />
         <div className="edituser">
-          <img src={PF + user.profilePicture} alt="" />
+          <img
+            src={user.profilePicture ? PF + user.profilePicture : noAvatar}
+            alt=""
+          />
           <label>{user.username}</label>
           <select value={selected} onChange={handleChange}>
             <option value="Private">Private</option>

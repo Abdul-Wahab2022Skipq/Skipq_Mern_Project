@@ -1,10 +1,10 @@
 import React from "react";
 import CloseIcon from "@mui/icons-material/Close";
+import axios from "axios";
 
 import "./ProfileEdit.css";
 import noAvatar from "../../assets/noAvatar.png";
 import Button from "../Button/Button";
-import axios from "axios";
 
 function ProfileEdit({ close, user }) {
   const PF = process.env.REACT_APP_IMAGES;

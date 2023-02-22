@@ -102,10 +102,14 @@ function Registration() {
                 }}
                 id="name"
                 name="name"
+                data-testid="name"
                 placeholder="Enter Name"
                 {...formik.getFieldProps("name")}
               />
-              <FormErrorMessage style={{ color: "red" }}>
+              <FormErrorMessage
+                data-testid="error.name"
+                style={{ color: "red" }}
+              >
                 {formik.errors.name}
               </FormErrorMessage>
             </FormControl>
@@ -129,10 +133,14 @@ function Registration() {
                 }}
                 id="username"
                 name="username"
+                data-testid="username"
                 placeholder="Enter UserName"
                 {...formik.getFieldProps("username")}
               />
-              <FormErrorMessage style={{ color: "red" }}>
+              <FormErrorMessage
+                data-testid="error.username"
+                style={{ color: "red" }}
+              >
                 {formik.errors.username}
               </FormErrorMessage>
             </FormControl>
@@ -153,11 +161,15 @@ function Registration() {
                       : "black",
                 }}
                 id="email"
+                data-testid="email"
                 name="email"
                 placeholder="Enter Email"
                 {...formik.getFieldProps("email")}
               />
-              <FormErrorMessage style={{ color: "red" }}>
+              <FormErrorMessage
+                data-testid="error.email"
+                style={{ color: "red" }}
+              >
                 {formik.errors.email}
               </FormErrorMessage>
             </FormControl>
@@ -181,11 +193,15 @@ function Registration() {
                 }}
                 id="password"
                 name="password"
+                data-testid="password"
                 type="password"
                 placeholder="Enter Password"
                 {...formik.getFieldProps("password")}
               />
-              <FormErrorMessage style={{ color: "red" }}>
+              <FormErrorMessage
+                data-testid="error.password"
+                style={{ color: "red" }}
+              >
                 {formik.errors.password}
               </FormErrorMessage>
             </FormControl>

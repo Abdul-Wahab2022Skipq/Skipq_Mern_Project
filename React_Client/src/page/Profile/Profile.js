@@ -38,11 +38,13 @@ function Profile() {
         navigate("/error");
       }
       setUser(result.data);
-      const count = await axios.get("/posts/profile/" + username);
+      const count = await axios.get(
+        "/posts/profile/" + username + "?userId=" + currentUser._id
+      );
       setPost(count.data.count);
     };
     fetchUser();
-  }, [navigate, username]);
+  }, [navigate, username, currentUser]);
 
   // FollowHandle
   const followHandle = async () => {

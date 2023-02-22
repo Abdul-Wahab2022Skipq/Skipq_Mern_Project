@@ -1,8 +1,8 @@
-import axios from "axios";
 import React from "react";
+import axios from "axios";
+import "./PostSetting.css";
 import { AuthContext } from "../../context/AuthContext";
 
-import "./PostSetting.css";
 function PostSetting({ user, post, editpost }) {
   const { user: currentUser, dispatch } = React.useContext(AuthContext);
 

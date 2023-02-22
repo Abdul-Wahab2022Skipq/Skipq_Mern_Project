@@ -18,7 +18,14 @@ function Feed({ username }) {
     const fetchposts = async () => {
       const result = username
         ? await axios.get(
-            "/posts/profile/" + username + "?limit=" + limit + "&skip=" + skip
+            "/posts/profile/" +
+              username +
+              "?userId=" +
+              user._id +
+              "&limit=" +
+              limit +
+              "&skip=" +
+              skip
           )
         : await axios.get(
             "/posts/timeline/" + user._id + "?limit=" + limit + "&skip=" + skip
@@ -30,9 +37,7 @@ function Feed({ username }) {
     fetchposts();
   }, [limit, skip, username, user._id]);
 
-  const currentPagefetch = async (currentpage) => {
-    // console.log(currentpage);
-
+  const currentPagefetch = async () => {
     const result = username
       ? await axios.get(
           "/posts/profile/" + username + "?limit=" + limit + "&skip=" + skip

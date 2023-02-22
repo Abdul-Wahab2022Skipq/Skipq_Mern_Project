@@ -75,6 +75,8 @@
 
 /* Profile right side  */
 .profileside {
+  width: 90%;
+  margin: auto;
   display: flex;
 }
 
