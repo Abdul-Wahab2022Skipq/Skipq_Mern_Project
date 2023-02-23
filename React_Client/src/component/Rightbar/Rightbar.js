@@ -28,7 +28,9 @@ export default function Rightbar({ user }) {
         // console.log(err);
       }
     };
-    getFriends();
+    setTimeout(() => {
+      getFriends();
+    }, 1000);
   }, [url, user]);
 
   // get All Users

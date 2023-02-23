@@ -88,7 +88,7 @@ function Feed({ username }) {
             previousLabel="<"
             nextLabel=">"
             breakLabel="..."
-            pageCount={count / limit}
+            pageCount={Math.ceil(count / limit)}
             pageRangeDisplayed={3}
             marginPagesDisplayed={1}
             onPageChange={handlePageClick}
