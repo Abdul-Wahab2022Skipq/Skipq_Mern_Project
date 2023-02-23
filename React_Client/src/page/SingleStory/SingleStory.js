@@ -32,7 +32,7 @@ function SingleStory() {
         <div className="Singlepost">
           <div className="singleimg">
             <img
-              src={PF + post.img ? PF + post.img : noAvatar}
+              src={post.img ? PF + post.img : noAvatar}
               alt=""
               width="100%"
               height="100%"

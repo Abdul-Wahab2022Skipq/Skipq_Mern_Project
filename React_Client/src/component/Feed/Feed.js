@@ -11,7 +11,7 @@ function Feed({ username }) {
   const { user } = React.useContext(AuthContext);
   const [posts, setPosts] = React.useState([]);
   const [count, setCount] = React.useState();
-  const limit = 2;
+  const limit = 3;
   const [skip, setSkip] = React.useState(0);
 
   React.useEffect(() => {
