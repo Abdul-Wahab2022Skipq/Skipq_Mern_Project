@@ -9,7 +9,7 @@
     "routes":[
         {
         "src":"/api/(.*)",
-        "dest":"./React_Client/index.js"
+        "dest":"./React_Api/index.js"
         }
     ]
 }
