@@ -2,7 +2,7 @@
     "rewrites":[
         {
         "src":"/api/(.*)",
-        "dest":"./React_Api/index.js"
+        "dest":"../React_Api/index.js"
         }
     ]
 }
