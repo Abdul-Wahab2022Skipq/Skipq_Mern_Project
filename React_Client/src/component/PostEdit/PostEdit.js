@@ -7,6 +7,7 @@ import noAvatar from "../../assets/noAvatar.png";
 import Button from "../Button/Button";
 
 function PostEdit({ user, post, close }) {
+  const url = process.env.REACT_APP_API_URL;
   const PF = process.env.REACT_APP_IMAGES;
   const desc = React.useRef();
   const [selected, setSelected] = React.useState(post.type);
@@ -22,7 +23,7 @@ function PostEdit({ user, post, close }) {
       type: selected,
     };
     try {
-      await axios.put("/posts/" + post._id, updatePost);
+      await axios.put(url + "/posts/" + post._id, updatePost);
     } catch (err) {}
     window.location.reload();
   };

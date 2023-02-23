@@ -14,6 +14,7 @@ import PostSetting from "../PostSetting/PostSetting";
 import PostEdit from "../PostEdit/PostEdit";
 
 function Post({ post, hometype }) {
+  const url = process.env.REACT_APP_API_URL;
   const navigate = useNavigate();
 
   const [model, setModel] = React.useState(false);
@@ -33,7 +34,9 @@ function Post({ post, hometype }) {
   // like set
   const likeHandler = () => {
     try {
-      axios.put("/posts/" + post._id + "/like", { userId: currentUser._id });
+      axios.put(url + "/posts/" + post._id + "/like", {
+        userId: currentUser._id,
+      });
     } catch (err) {}
     setLike(isliked ? like - 1 : like + 1);
     setisLiked(!isliked);
@@ -42,11 +45,11 @@ function Post({ post, hometype }) {
   // get user
   React.useEffect(() => {
     const fetchUser = async () => {
-      const result = await axios.get(`/user?userId=${post.userId}`);
+      const result = await axios.get(url + `/user?userId=${post.userId}`);
       setUser(result.data);
     };
     fetchUser();
-  }, [post.userId]);
+  }, [url, post.userId]);
 
   // Post setting model popup
   const toggleModel = () => {

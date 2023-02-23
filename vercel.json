@@ -1,14 +1,8 @@
 {
-    "builds":[
-        {
-            "src":"./React_Api/index.js",
-            "use":"@vercel/node"
-        }
-    ],
-    "routes":[
+    "rewrites":[
         {
         "src":"/api/(.*)",
-        "dest":"/api/"
+        "dest":"./React_Api/index.js"
         }
     ]
 }

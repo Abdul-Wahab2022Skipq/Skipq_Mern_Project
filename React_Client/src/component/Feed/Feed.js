@@ -8,6 +8,7 @@ import Post from "../Post/Post";
 import { AuthContext } from "../../context/AuthContext";
 
 function Feed({ username }) {
+  const url = process.env.REACT_APP_API_URL;
   const { user } = React.useContext(AuthContext);
   const [posts, setPosts] = React.useState([]);
   const [count, setCount] = React.useState();
@@ -18,7 +19,8 @@ function Feed({ username }) {
     const fetchposts = async () => {
       const result = username
         ? await axios.get(
-            "/posts/profile/" +
+            url +
+              "/posts/profile/" +
               username +
               "?userId=" +
               user._id +
@@ -28,22 +30,40 @@ function Feed({ username }) {
               skip
           )
         : await axios.get(
-            "/posts/timeline/" + user._id + "?limit=" + limit + "&skip=" + skip
+            url +
+              "/posts/timeline/" +
+              user._id +
+              "?limit=" +
+              limit +
+              "&skip=" +
+              skip
           );
       // console.log(result.data);
       setPosts(result.data.posts);
       setCount(result.data.count);
     };
     fetchposts();
-  }, [limit, skip, username, user._id]);
+  }, [url, limit, skip, username, user._id]);
 
   const currentPagefetch = async () => {
     const result = username
       ? await axios.get(
-          "/posts/profile/" + username + "?limit=" + limit + "&skip=" + skip
+          url +
+            "/posts/profile/" +
+            username +
+            "?limit=" +
+            limit +
+            "&skip=" +
+            skip
         )
       : await axios.get(
-          "/posts/timeline/" + user._id + "?limit=" + limit + "&skip=" + skip
+          url +
+            "/posts/timeline/" +
+            user._id +
+            "?limit=" +
+            limit +
+            "&skip=" +
+            skip
         );
     setPosts(result.data.posts);
   };

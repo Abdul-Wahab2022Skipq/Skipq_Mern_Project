@@ -15,6 +15,7 @@ import { AuthContext } from "../../context/AuthContext";
 import ProfileEdit from "../../component/ProfileEdit/ProfileEdit";
 
 function Profile() {
+  const url = process.env.REACT_APP_API_URL;
   const [profileedit, setProfileEdit] = React.useState(false);
   const [user, setUser] = React.useState([]);
   const { user: currentUser, dispatch } = React.useContext(AuthContext);
@@ -33,29 +34,29 @@ function Profile() {
 
   React.useEffect(() => {
     const fetchUser = async () => {
-      const result = await axios.get(`/user?username=${username}`);
+      const result = await axios.get(url + `/user?username=${username}`);
       if (result.data === "not Found") {
         navigate("/error");
       }
       setUser(result.data);
       const count = await axios.get(
-        "/posts/profile/" + username + "?userId=" + currentUser._id
+        url + "/posts/profile/" + username + "?userId=" + currentUser._id
       );
       setPost(count.data.count);
     };
     fetchUser();
-  }, [navigate, username, currentUser]);
+  }, [url, navigate, username, currentUser]);
 
   // FollowHandle
   const followHandle = async () => {
     try {
       if (followed) {
-        await axios.put("/user/" + user._id + "/unfollow", {
+        await axios.put(url + "/user/" + user._id + "/unfollow", {
           userId: currentUser._id,
         });
         dispatch({ type: "Unfollow", payload: user._id });
       } else {
-        await axios.put("/user/" + user._id + "/follow", {
+        await axios.put(url + "/user/" + user._id + "/follow", {
           userId: currentUser._id,
         });
         dispatch({ type: "Follow", payload: user._id });

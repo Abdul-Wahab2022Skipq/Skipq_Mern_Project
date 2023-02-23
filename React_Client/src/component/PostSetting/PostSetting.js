@@ -4,11 +4,12 @@ import "./PostSetting.css";
 import { AuthContext } from "../../context/AuthContext";
 
 function PostSetting({ user, post, editpost }) {
+  const url = process.env.REACT_APP_API_URL;
   const { user: currentUser, dispatch } = React.useContext(AuthContext);
 
   const followHandle = async () => {
     try {
-      await axios.put("/user/" + user._id + "/unfollow", {
+      await axios.put(url + "/user/" + user._id + "/unfollow", {
         userId: currentUser._id,
       });
       dispatch({ type: "Unfollow", payload: user._id });
@@ -21,7 +22,7 @@ function PostSetting({ user, post, editpost }) {
   // Delete Post
   const deleteHandle = async () => {
     try {
-      await axios.delete("/posts/" + post._id, {
+      await axios.delete(url + "/posts/" + post._id, {
         data: { userId: currentUser._id },
       });
       window.location.reload();

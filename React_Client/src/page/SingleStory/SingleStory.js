@@ -8,22 +8,24 @@ import Menubar from "../../component/Menubar/Menubar";
 import noAvatar from "../../assets/noAvatar.png";
 
 function SingleStory() {
+  const url = process.env.REACT_APP_API_URL;
   const postid = useParams().postid;
   const navigate = useNavigate();
   const [post, setPost] = React.useState([]);
   const [like, setLike] = React.useState(0);
-  const [comment, setcomment] = React.useState(0);
+  const [comment, setComment] = React.useState(0);
   const PF = process.env.REACT_APP_IMAGES;
 
   React.useEffect(() => {
     const fetch = async () => {
-      const singlepost = await axios.get("/posts/Singlepost/" + postid);
+      const singlepost = await axios.get(url + "/posts/Singlepost/" + postid);
       if (singlepost.data === "not Found") navigate("/error");
       setPost(singlepost.data);
       setLike(singlepost.data.likes.length);
+      setComment(0);
     };
     fetch();
-  }, [navigate, postid]);
+  }, [url, navigate, postid]);
 
   return (
     <div>

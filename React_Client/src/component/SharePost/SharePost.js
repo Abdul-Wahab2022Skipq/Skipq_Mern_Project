@@ -7,6 +7,7 @@ import noAvatar from "../../assets/noAvatar.png";
 import { AuthContext } from "../../context/AuthContext";
 
 function SharePost() {
+  const url = process.env.REACT_APP_API_URL;
   const { user } = React.useContext(AuthContext);
   const desc = React.useRef();
   const [file, setFile] = React.useState(null);
@@ -26,13 +27,13 @@ function SharePost() {
       data.append("file", file);
       newPost.img = fileName;
       try {
-        await axios.post("/upload", data);
+        await axios.post(url + "/upload", data);
       } catch (err) {}
     }
     if (desc.current.value || file) {
       // console.log(newPost);
       try {
-        await axios.post("/posts", newPost);
+        await axios.post(url + "/posts", newPost);
         window.location.reload();
       } catch (err) {}
     }

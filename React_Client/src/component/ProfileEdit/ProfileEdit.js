@@ -7,6 +7,7 @@ import noAvatar from "../../assets/noAvatar.png";
 import Button from "../Button/Button";
 
 function ProfileEdit({ close, user }) {
+  const url = process.env.REACT_APP_API_URL;
   const PF = process.env.REACT_APP_IMAGES;
   const [file, setFile] = React.useState(null);
   const bio = React.useRef();
@@ -26,7 +27,7 @@ function ProfileEdit({ close, user }) {
     };
     console.log(updateuser);
     try {
-      axios.put("/user/" + user._id, updateuser);
+      axios.put(url + "/user/" + user._id, updateuser);
       window.location.reload();
     } catch (err) {
       console.log(err);

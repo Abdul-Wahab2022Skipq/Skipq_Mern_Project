@@ -16,6 +16,7 @@ import Button from "../../component/Button/Button";
 import { String } from "../../utilites/String";
 
 function Registration() {
+  const url = process.env.REACT_APP_API_URL;
   const [loading, setLoading] = React.useState(false);
   const navigate = useNavigate();
   // Validation
@@ -31,7 +32,7 @@ function Registration() {
       setLoading(true);
       const fetch = async () => {
         try {
-          await axios.post("auth/register", values);
+          await axios.post(url + "/auth/register", values);
           navigate("/Login");
           setLoading(false);
         } catch (err) {

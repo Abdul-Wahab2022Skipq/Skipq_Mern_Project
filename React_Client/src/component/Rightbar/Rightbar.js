@@ -9,6 +9,7 @@ import AllUser from "../AllUser/AllUser";
 import { AuthContext } from "../../context/AuthContext";
 
 export default function Rightbar({ user }) {
+  const url = process.env.REACT_APP_API_URL;
   const { user: currentUser } = React.useContext(AuthContext);
 
   const PF = process.env.REACT_APP_IMAGES;
@@ -19,27 +20,29 @@ export default function Rightbar({ user }) {
   React.useEffect(() => {
     const getFriends = async () => {
       try {
-        const userfriendlist = await axios.get("/user/friends/" + user._id);
+        const userfriendlist = await axios.get(
+          url + "/user/friends/" + user._id
+        );
         setFriends(userfriendlist.data);
       } catch (err) {
         // console.log(err);
       }
     };
     getFriends();
-  }, [user]);
+  }, [url, user]);
 
   // get All Users
   React.useEffect(() => {
     const getAllUser = async () => {
       try {
-        const All = await axios.get("/user/all/" + currentUser._id);
+        const All = await axios.get(url + "/user/all/" + currentUser._id);
         setAllUser(All.data);
       } catch (err) {
         console.log(err);
       }
     };
     getAllUser([]);
-  }, [currentUser]);
+  }, [url, currentUser]);
 
   const HomeRightbar = () => {
     return (
