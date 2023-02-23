@@ -1,8 +1,15 @@
 {
-    "rewrites":[
+    "version": 2,
+    "builds":[
+        {
+            "src":"./React_Api/index.js",
+            "use":"@now/node"
+        }
+    ],
+    "routes":[
         {
         "src":"/api/(.*)",
-        "dest":"./React_Api/index.js"
+        "dest":"./React_Client/index.js"
         }
     ]
 }
