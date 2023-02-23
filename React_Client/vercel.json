@@ -1,15 +1,1 @@
-{
-    "version": 2,
-    "builds":[
-        {
-            "src":"../React_Api/index.js",
-            "use":"@vercel/node"
-        }
-    ],
-    "routes":[
-        {
-        "src":"/api/(.*)",
-        "dest":"../React_Api/index.js"
-        }
-    ]
-}
+
