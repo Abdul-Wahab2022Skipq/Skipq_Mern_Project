@@ -46,6 +46,10 @@ app.post("/api/upload", upload.single("file"), (req, res) => {
   }
 });
 
+app.get("/", (req, res) => {
+  res.status(200).json("Connect server is ready");
+});
+
 //Routes
 app.use("/api/user", userRoute);
 app.use("/api/auth", authRoute);
