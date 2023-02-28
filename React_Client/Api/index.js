@@ -50,8 +50,8 @@ app.post("/api/upload", upload.single("file"), (req, res) => {
 app.use("/api/user", userRoute);
 app.use("/api/auth", authRoute);
 app.use("/api/posts", postRoute);
-// app.listen(process.env.REACT_APP_API_PORT, () => {
-//   console.log("Be started at port 9002");
-// });
+app.listen(process.env.REACT_APP_API_PORT, () => {
+  console.log("Be started at port 9002");
+});
 
 module.exports = app;
