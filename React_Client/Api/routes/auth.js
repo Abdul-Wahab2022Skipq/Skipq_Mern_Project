@@ -1,5 +1,5 @@
 const router = require("express").Router();
-const User = require("../models/User");
+const User = require("../../React_Client/Api/models/User");
 
 // Register
 router.post("/register", async (req, res) => {
