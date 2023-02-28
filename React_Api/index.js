@@ -53,3 +53,5 @@ app.use("/api/posts", postRoute);
 app.listen(process.env.REACT_APP_API_PORT, () => {
   console.log("Be started at port " + process.env.REACT_APP_API_PORT);
 });
+
+module.exports = app;
