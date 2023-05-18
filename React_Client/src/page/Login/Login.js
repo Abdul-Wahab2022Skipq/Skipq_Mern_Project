@@ -60,6 +60,8 @@ const Login = () => {
         <p>
           {String.name} helps you connect and share with people in your life
         </p>
+        <p>email: wahab@gmail.com</p>
+        <p>password: 1234567890</p>
       </div>
       {/* Login Box */}
       <div className="logboxset">
