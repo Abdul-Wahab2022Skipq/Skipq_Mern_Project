@@ -32,6 +32,7 @@ function Profile() {
     setfollowed(currentUser.followings.includes(user?._id));
   }, [currentUser, user._id]);
 
+  // Get User
   React.useEffect(() => {
     const fetchUser = async () => {
       const result = await axios.get(url + `/user?username=${username}`);
@@ -47,7 +48,7 @@ function Profile() {
     fetchUser();
   }, [url, navigate, username, currentUser]);
 
-  // FollowHandle
+  // Follow Handle
   const followHandle = async () => {
     try {
       if (followed) {
@@ -139,7 +140,7 @@ function Profile() {
           </div>
           {/* After image information */}
           <div className="Information">
-            <label>{user.username}</label>
+            <label className="username_profile" >{user.username}</label>
             <span>{user.bio ? user.bio : "Friends, Welcome to My Page!"}</span>
           </div>
         </div>
