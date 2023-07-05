@@ -1,10 +1,11 @@
 @import url("../../utilites/Color.css");
 
 .postedbox {
-  -webkit-box-shadow: 0 0 10px 5px rgba(0, 0, 0, 0.1);
-  box-shadow: 0 0 10px 5px rgba(0, 0, 0, 0.1);
+  -webkit-box-shadow: 0 0 5px 5px rgba(0, 0, 0, 0.1);
+  box-shadow: 0 0 5px 5px rgba(0, 0, 0, 0.1);
   margin: 25px 10px;
   border-radius: 25px;
+  background: linear-gradient(180deg, lightgray, white);
   padding: 10px;
 }
 
@@ -43,13 +44,29 @@
   cursor: pointer;
 }
 
+.postCenter {
+  border-radius: 20px;
+  overflow: hidden;
+  position: relative;
+  margin: 10px 0;
+}
+
 .postCenter img {
-  border: 1px solid black;
+  -webkit-box-shadow: 0 10px 10px 0 rgba(0, 0, 0, 0.5);
+  box-shadow: 0 10px 10px 0 rgba(0, 0, 0, 0.5);
   object-fit: contain;
   width: 100%;
 }
 
-.postBottom {
+.inimg {
+  position: absolute;
+  bottom: 0;
+  left: 0;
+  color: white;
+  background-color: rgb(0, 0, 0, 0.5);
+  width: 100%;
+  margin: 0;
+  padding: 10px;
   display: flex;
   justify-content: space-between;
 }
@@ -57,9 +74,22 @@
 .likePost {
   cursor: pointer;
   display: flex;
+  width: fit-content;
+  height: fit-content;
 }
 
 .likePost img {
+  background-color: rgb(255, 255, 255);
+  border-radius: 20px;
   width: 25px;
-  margin-right: 10px;
+}
+
+.likePost span {
+  margin: 0 5px;
+}
+
+.postBottom {
+  display: flex;
+  justify-content: space-between;
+  margin-top: 15px;
 }
