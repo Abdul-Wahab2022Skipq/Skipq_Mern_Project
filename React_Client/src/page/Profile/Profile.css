@@ -12,7 +12,7 @@
 .box {
   background-color: "white";
   width: 100%;
-  box-shadow: 1px 1px 100px 10px rgb(0, 0, 0, 0.1);
+  border-bottom: 1px solid lightgray;
 }
 
 .boxTopHeader {
@@ -45,6 +45,19 @@
   height: 150px;
   border-radius: 100%;
   overflow: hidden;
+}
+
+.username_profile {
+  animation: dance 2s infinite;
+}
+@keyframes dance {
+  0%,
+  100% {
+    transform: rotate(5deg);
+  }
+  50% {
+    transform: rotate(-5deg);
+  }
 }
 
 .rightside {
