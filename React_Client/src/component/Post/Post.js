@@ -86,31 +86,38 @@ function Post({ post, hometype }) {
           </div>
           <div className="postedTopright" onClick={toggleModel}>
             <MoreVertIcon />
-            {model && (
-              <PostSetting user={user} post={post} editpost={EditHandle} />
-            )}
+            <PostSetting
+              user={user}
+              post={post}
+              editpost={EditHandle}
+              modelopen={model}
+            />
           </div>
         </div>
         {/* posted set  center*/}
-        <div
-          className="postCenter"
-          onClick={() => navigate(`/SinglePost/${post._id}`)}
-        >
-          <p>{post?.desc}</p>
-          {post.img ? <img src={PF + post.img} alt="s" /> : ""}
-        </div>
-        {/* posted like or comments */}
-        <div className="postBottom">
-          <div className="likePost">
+        <div className="postCenter">
+          {post.img ? (
             <img
-              src={isliked ? likeIcon : unlikeIcon}
-              onClick={likeHandler}
-              alt="like"
+              src={PF + post.img}
+              alt="s"
+              onClick={() => navigate(`/SinglePost/${post._id}`)}
             />
-            <span>{like} people like it</span>
-          </div>
-          <div className="commentPost">
-            <span>{post.comment ? post.comment : "0"} comments</span>
+          ) : (
+            ""
+          )}
+          <div className="inimg">
+            <p className="DESC">{post?.desc}</p>
+            {/* posted like or comments */}
+            <div className="likePost">
+              <img
+                src={isliked ? likeIcon : unlikeIcon}
+                onClick={likeHandler}
+                alt="like"
+              />
+              <span>
+                {like} like{like < 2 ? "" : "s"}
+              </span>
+            </div>
           </div>
         </div>
       </div>
