@@ -1,10 +1,12 @@
 @import url("../../utilites/Color.css");
 
 .Postsettingbox {
+  transition: 1s;
   position: absolute;
   background-color: white;
   right: 10px;
   font-size: 14px;
+  z-index: 1;
   padding: 10px;
   border: 0.5px solid rgba(0, 0, 0, 0.1);
   -webkit-box-shadow: 0 0 10px 5px rgba(0, 0, 0, 0.1);
