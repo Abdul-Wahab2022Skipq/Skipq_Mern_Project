@@ -3,7 +3,7 @@ import axios from "axios";
 import "./PostSetting.css";
 import { AuthContext } from "../../context/AuthContext";
 
-function PostSetting({ user, post, editpost }) {
+function PostSetting({ user, post, editpost, modelopen }) {
   const url = process.env.REACT_APP_API_URL;
   const { user: currentUser, dispatch } = React.useContext(AuthContext);
 
@@ -32,7 +32,13 @@ function PostSetting({ user, post, editpost }) {
   };
 
   return (
-    <div className="Postsettingbox">
+    <div
+      className="Postsettingbox"
+      style={{
+        opacity: !modelopen ? "0" : "1",
+        visibility: !modelopen ? "hidden" : "visible",
+      }}
+    >
       {currentUser._id === user._id ? (
         <>
           <div className="EditPost" onClick={editpost}>
