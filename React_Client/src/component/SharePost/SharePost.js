@@ -73,7 +73,7 @@ function SharePost() {
         <form className="shareThing" onSubmit={submitHandler}>
           <label htmlFor="file" className="PoV">
             <PhotoLibraryIcon className="selectIcon" htmlColor="tomato" />
-            <span>Photo or video</span>
+            <span>Photo</span>
             <input
               style={{ display: "none" }}
               type="file"
