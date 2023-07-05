@@ -16,7 +16,8 @@ function Menubar() {
         </NavLink>
       </nav>
       <div className="welcomeset">
-        Welcome to {String.name} {user.username}
+        Welcome to<span className="appname_menu"> {String.name}</span>,
+        <span className="username_menu"> {user.username}</span>
       </div>
       <nav className="nav">
         <NavLink to={`/Profile/${user.username}`} className="link">
